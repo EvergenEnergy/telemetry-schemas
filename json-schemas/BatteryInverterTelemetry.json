@@ -36,12 +36,26 @@
     "wattsPhaseA": { "$ref": "#/properties/activePower" },
     "wattsPhaseB": { "$ref": "#/properties/activePower" },
     "wattsPhaseC": { "$ref": "#/properties/activePower" },
-    "apparentPowerPhaseA": { "type": "number" },
-    "apparentPowerPhaseB": { "type": "number" },
-    "apparentPowerPhaseC": { "type": "number" },
-    "reactivePowerPhaseA": { "type": "number" },
-    "reactivePowerPhaseB": { "type": "number" },
-    "reactivePowerPhaseC": { "type": "number" },
+    "apparentPower": {
+      "type": "object",
+      "properties": {
+        "value": { "type": "number" }
+      },
+      "required": ["value"]
+    },
+    "apparentPowerPhaseA": { "$ref": "#/properties/apparentPower" },
+    "apparentPowerPhaseB": { "$ref": "#/properties/apparentPower" },
+    "apparentPowerPhaseC": { "$ref": "#/properties/apparentPower" },
+    "reactivePower": {
+      "type": "object",
+      "properties": {
+        "value": { "type": "number" }
+      },
+      "required": ["value"]
+    },
+    "reactivePowerPhaseA": { "$ref": "#/properties/reactivePower" },
+    "reactivePowerPhaseB": { "$ref": "#/properties/reactivePower" },
+    "reactivePowerPhaseC": { "$ref": "#/properties/reactivePower" },
     "powerFactor": {
       "type": "object",
       "properties": {
@@ -53,6 +67,12 @@
     "powerFactorPhaseB": { "$ref": "#/properties/powerFactor" },
     "powerFactorPhaseC": { "$ref": "#/properties/powerFactor" }
   },
-  "required": ["siteId", "externalDeviceId"]
+  "required": [
+    "siteId",
+    "externalDeviceId",
+    "activePower",
+    "powerFactor",
+    "reactivePower"
+  ]
 }
 
