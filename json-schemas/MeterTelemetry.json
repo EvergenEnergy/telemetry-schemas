@@ -1,0 +1,144 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "title": "MeterTelemetry",
+  "properties": {
+    "siteId": {
+      "type": "string",
+      "description": "Site Identifier"
+    },
+    "externalDeviceId": {
+      "type": "string",
+      "description": "External Device ID"
+    },
+    "PowerSchema": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "number",
+          "description": "Power in Watts (W)"
+        },
+        "unit": {
+          "type": "string",
+          "enum": ["W", "KW", "MW"],
+          "description": "Unit of power"
+        }
+      },
+      "required": ["value", "unit"]
+    },
+    "ApparentPowerSchema": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "number",
+          "description": "Apparent Power in Volt-Amperes (VA)"
+        },
+        "unit": {
+          "type": "string",
+          "enum": ["VA", "KVA", "MVA"],
+          "description": "Unit of apparent power"
+        }
+      },
+      "required": ["value", "unit"]
+    },
+    "ReactivePowerSchema": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "number",
+          "description": "Reactive Power in Volt-Amperes Reactive (VAR)"
+        },
+        "unit": {
+          "type": "string",
+          "enum": ["VAR", "KVAR", "MVAR"],
+          "description": "Unit of reactive power"
+        }
+      },
+      "required": ["value", "unit"]
+    },
+    "PowerFactorSchema": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "number",
+          "minimum": -1,
+          "maximum": 1,
+          "description": "Power Factor (PF)"
+        }
+      },
+      "required": ["value"]
+    },
+    "totalWatts": {
+      "$ref": "#/properties/PowerSchema",
+      "description": "Total Watts (W)"
+    },
+    "wattsPhaseA": {
+      "$ref": "#/properties/PowerSchema",
+      "description": "Watts phase A (W)"
+    },
+    "wattsPhaseB": {
+      "$ref": "#/properties/PowerSchema",
+      "description": "Watts phase A (W)"
+    },
+    "wattsPhaseC": {
+      "$ref": "#/properties/PowerSchema",
+      "description": "Watts phase A (W)"
+    },
+    "totalApparentPower": {
+      "$ref": "#/properties/ApparentPowerSchema",
+      "description": "Total Apparent Power (VA)"
+    },
+    "apparentPowerPhaseA": {
+      "$ref": "#/properties/ApparentPowerSchema",
+      "description": "Apparent Power phase A (VA)"
+    },
+    "apparentPowerPhaseB": {
+      "$ref": "#/properties/ApparentPowerSchema",
+      "description": "Apparent Power phase B (VA)"
+    },
+    "apparentPowerPhaseC": {
+      "$ref": "#/properties/ApparentPowerSchema",
+      "description": "Apparent Power phase C (VA)"
+    },
+    "totalReactivePower": {
+      "$ref": "#/properties/ReactivePowerSchema",
+      "description": "Total Reactive Power (VAR)"
+    },
+    "reactivePowerPhaseA": {
+      "$ref": "#/properties/ReactivePowerSchema",
+      "description": "Reactive Power phase A (VAR)"
+    },
+    "reactivePowerPhaseB": {
+      "$ref": "#/properties/ReactivePowerSchema",
+      "description": "Reactive Power phase B (VAR)"
+    },
+    "reactivePowerPhaseC": {
+      "$ref": "#/properties/ReactivePowerSchema",
+      "description": "Reactive Power phase C (VAR)"
+    },
+    "totalPowerFactor": {
+      "$ref": "#/properties/PowerFactorSchema",
+      "description": "Total Power Factor (PF)"
+    },
+    "powerFactorPhaseA": {
+      "$ref": "#/properties/PowerFactorSchema",
+      "description": "Power Factor phase A (PF)"
+    },
+    "powerFactorPhaseB": {
+      "$ref": "#/properties/PowerFactorSchema",
+      "description": "Power Factor phase B (PF)"
+    },
+    "powerFactorPhaseC": {
+      "$ref": "#/properties/PowerFactorSchema",
+      "description": "Power Factor phase C (PF)"
+    }
+  },
+  "required": [
+    "siteId",
+    "externalDeviceId",
+    "totalWatts",
+    "totalApparentPower",
+    "totalReactivePower",
+    "totalPowerFactor"
+  ]
+}

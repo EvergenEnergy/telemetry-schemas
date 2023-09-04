@@ -1,0 +1,58 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "title": "BatteryInverterTelemetry",
+  "properties": {
+    "siteId": {
+      "type": "string"
+    },
+    "externalDeviceId": {
+      "type": "string"
+    },
+    "operatingState": {
+      "type": "string",
+      "enum": ["OPERATING_STATE_OFF", "OPERATING_STATE_ON"]
+    },
+    "inverterState": {
+      "type": "string",
+      "enum": ["INVERTER_STATE_OFF", "INVERTER_STATE_SLEEPING", "INVERTER_STATE_STARTING", "INVERTER_STATE_RUNNING", "INVERTER_STATE_THROTTLED", "INVERTER_STATE_SHUTTING_DOWN", "INVERTER_STATE_FAULT", "INVERTER_STATE_STANDBY"]
+    },
+    "connectionState": {
+      "type": "string",
+      "enum": ["GRID_CONNECTION_STATE_DISCONNECTED", "GRID_CONNECTION_STATE_CONNECTED"]
+    },
+    "alarm": { "type": "integer" },
+    "activePower": {
+      "type": "object",
+      "properties": {
+        "value": { "type": "number" },
+        "unit": {
+          "type": "string",
+          "enum": ["POWER_UNIT_UNSPECIFIED", "W", "KW", "MW"]
+        }
+      },
+      "required": ["value", "unit"]
+    },
+    "wattsPhaseA": { "$ref": "#/properties/activePower" },
+    "wattsPhaseB": { "$ref": "#/properties/activePower" },
+    "wattsPhaseC": { "$ref": "#/properties/activePower" },
+    "apparentPowerPhaseA": { "type": "number" },
+    "apparentPowerPhaseB": { "type": "number" },
+    "apparentPowerPhaseC": { "type": "number" },
+    "reactivePowerPhaseA": { "type": "number" },
+    "reactivePowerPhaseB": { "type": "number" },
+    "reactivePowerPhaseC": { "type": "number" },
+    "powerFactor": {
+      "type": "object",
+      "properties": {
+        "value": { "type": "number", "minimum": -1, "maximum": 1 }
+      },
+      "required": ["value"]
+    },
+    "powerFactorPhaseA": { "$ref": "#/properties/powerFactor" },
+    "powerFactorPhaseB": { "$ref": "#/properties/powerFactor" },
+    "powerFactorPhaseC": { "$ref": "#/properties/powerFactor" }
+  },
+  "required": ["siteId", "externalDeviceId"]
+}
+

@@ -1,0 +1,69 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "title": "BatteryTelemetry",
+  "properties": {
+    "siteId": {
+      "type": "string",
+      "description": "Site identifier"
+    },
+    "deviceExternalId": {
+      "type": "string",
+      "description": "Device identifier provided by the site owner"
+    },
+    "measuredTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "UTC time when telemetry data was measured at the vendor's site"
+    },
+    "receivedTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "UTC time when telemetry was received by Evergen service"
+    },
+    "stateOfCharge": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "State of Charge as a percentage of Rated Energy Capacity (%WHRtg)"
+    },
+    "batteryState": {
+      "type": "string",
+      "enum": [
+        "DISCONNECTED",
+        "INITIALIZING",
+        "CONNECTED",
+        "STANDBY",
+        "SOC_PROTECTION",
+        "SUSPENDING",
+        "FAULT"
+      ],
+      "description": "State of the Battery Bank"
+    },
+    "totalPower": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "number",
+          "description": "Total Power in Watts (W)"
+        },
+        "unit": {
+          "type": "string",
+          "enum": ["W", "KW", "MW"],
+          "description": "Reference unit, e.g., kW or MW"
+        }
+      },
+      "required": ["value", "unit"],
+      "description": "Total Power (W)"
+    }
+  },
+  "required": [
+    "siteId",
+    "deviceExternalId",
+    "measuredTime",
+    "receivedTime",
+    "stateOfCharge",
+    "batteryState",
+    "totalPower"
+  ]
+}
